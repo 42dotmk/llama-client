@@ -1,31 +1,37 @@
-<div class="bg-slate-50">
+<div class="bg-slate-50 dark:bg-slate-800 absolute top-0 z-[-2] h-screen w-screen overflow-hidden">
+    <div class="absolute bottom-0 left-0 h-3/5 w-3/5 dark:bg-cyan-900 bg-cyan-400 rotate-12"></div>
+    <div class="absolute rop-0 right-0 h-3/5 w-3/5 bg-gradient-to-l from-sky-500 to-cyan-800 rotate-6"></div>
+</div>
+
+<div class="bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-300 bg-opacity-90 dark:bg-opacity-90 backdrop-blur-3xl dark:backdrop-blur-3xl">
     <div class="h-dvh mx-0 flex flex-col justify-between">
         <div class="overflow-scroll">
-            <div class="text-sm text-slate-500 flex flex-col items-center pt-5 bg-slate-100 shadow-sm absolute w-full">
+            <div
+                class="backdrop-blur-md dark:backdrop-blur-md bg-opacity-50 dark:bg-opacity-50 text-slate-500 dark:text-slate-300 bg-slate-100 dark:bg-slate-900 text-sm flex flex-col items-center justify-center h-12 shadow-sm absolute w-full">
                 <div>llama2:7b</div>
-                <hr class="w-full mt-3" />
             </div>
             <div class="flex flex-col gap-3 px-3 pb-10 pt-20 lg:mx-auto lg:w-1/2">
                 @for (message of messages; track message.createdAt) {
                 @if (message.sender === 'LLAMA' && !message.hasError) {
                 <div class="flex gap-1 items-start pb-5 flex-col overflow-x-scroll">
                     <div class="flex gap-3 items-center">
-                        <img class="w-7 bg-white rounded-lg shadow-sm" src="http://status.42.mk/ollama.png" />
-                        <div class="text-md text-slate-800 font-bold">Llama</div>
+                        <img class="bg-white w-7 rounded-lg shadow-sm" src="http://status.42.mk/ollama.png" />
+                        <div class="text-md font-bold">Llama</div>
                     </div>
-                    <div class="ml-10 text-slate-800 prose w-full" [innerHTML]="message.message"></div>
+                    <div class="ml-10 w-full prose dark:prose-invert text-slate-800 dark:text-slate-300"
+                        [innerHTML]="message.message"></div>
                 </div>
                 }
                 @else if (message.hasError) {
-                <div class="bg-slate-100 border-l-4 border-red-400 px-4 py-2" role="alert">
+                <div class="bg-slate-100 dark:bg-slate-800 border-l-4 border-red-400 px-4 py-2 shadow" role="alert">
                     <p class="font-bold text-red-400">Oops</p>
                     <p>Something went wrong.</p>
                 </div>
                 }
                 @else {
                 <div class="flex gap-1 mb-5 flex-col ml-10">
-                    <div class="text-md text-slate-800 font-bold">You</div>
-                    <div class="text-slate-800">{{message.message}}</div>
+                    <div class="text-md font-bold">You</div>
+                    <div>{{message.message}}</div>
                 </div>
                 }
                 }
@@ -35,11 +41,11 @@
             </div>
         </div>
         <div class="w-full">
-            <div class="pb-5 lg:px-0 px-3 bg-slate-50">
-                <hr class="mb-3" />
+            <div class="bg-slate-50 dark:bg-slate-800 pb-5 lg:px-0 px-3">
+                <div class="mb-3 bg-slate-300 dark:bg-slate-900 w-full h-[1px]"></div>
                 <input type="text" [disabled]="isLoading" placeholder="Start talking with Llama"
                     (keyup.enter)="onEnter()" [(ngModel)]="input" [class.opacity-30]="isLoading"
-                    class="lg:mx-auto lg:w-1/2 bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5">
+                    class="bg-transparent border-slate-300 dark:border-slate-500 shadow lg:mx-auto lg:w-1/2 border text-sm rounded-lg block w-full p-2.5">
             </div>
         </div>
     </div>
