@@ -25,6 +25,8 @@ export class AppComponent {
   constructor(private readonly llamaService: LlamaService) { }
 
   onEnter(): void {
+    if (!this.input) return;
+
     this.isLoading = true;
     this.messages.push({
       sender: 'YOU',
@@ -43,7 +45,7 @@ export class AppComponent {
             createdAt: data['created_at'],
           });
         },
-        error: (err) => {
+        error: (_) => {
           this.messages.push({
             sender: 'LLAMA',
             hasError: true,
