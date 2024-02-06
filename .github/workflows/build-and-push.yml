@@ -1,0 +1,32 @@
+name: Build and Push Docker Image
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Login to ghcr.io
+      uses: docker/login-action@v3
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Build & Push Docker Image
+      run: |
+        SHORT_COMMIT_HASH=$(echo ${{ github.sha }} | cut -c1-7)
+        docker build -t ghcr.io/42dotmk/llama-client:latest .
+        docker tag ghcr.io/42dotmk/llama-client:latest ghcr.io/42dotmk/llama-client:$SHORT_COMMIT_HASH
+        docker push ghcr.io/42dotmk/llama-client:latest
+        docker push ghcr.io/42dotmk/llama-client:$SHORT_COMMIT_HASH
