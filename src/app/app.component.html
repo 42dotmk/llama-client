@@ -1,7 +1,7 @@
-<div class="bg-zinc-100">
+<div class="bg-slate-100">
     <div class="h-screen w-screen mx-0 flex flex-col justify-between">
         <div class="overflow-scroll">
-            <div class="text-sm text-zinc-500 flex flex-col items-center mb-10 mt-5">
+            <div class="text-sm text-slate-500 flex flex-col items-center mb-10 mt-5">
                 <div>llama2:7b</div>
                 <hr class="w-full mt-3" />
             </div>
@@ -13,15 +13,15 @@
                 <div class="flex gap-1 items-start pb-5 pe-20 flex-col w-full rounded-md">
                     <div class="flex gap-3 items-center">
                         <img class="w-7 bg-white rounded-lg shadow-sm" src="http://status.42.mk/ollama.png" />
-                        <div class="text-md text-zinc-800 font-bold">Llama</div>
+                        <div class="text-md text-slate-800 font-bold">Llama</div>
                     </div>
-                    <div class="ml-10 text-zinc-800 prose" [innerHTML]="message.message"></div>
+                    <div class="ml-10 text-slate-800 prose" [innerHTML]="message.message"></div>
                 </div>
                 }
                 @else {
                 <div class="flex gap-1 mb-5 flex-col ml-10">
-                    <div class="text-md text-zinc-800 font-bold">You</div>
-                    <div class="text-zinc-800">{{message.message}}</div>
+                    <div class="text-md text-slate-800 font-bold">You</div>
+                    <div class="text-slate-800">{{message.message}}</div>
                 </div>
                 }
                 }
@@ -38,7 +38,7 @@
 
                 <input type="text" [disabled]="isLoading" placeholder="Start talking with Llama"
                     (keyup.enter)="onEnter()" [(ngModel)]="input" [class.opacity-50]="isLoading"
-                    class="lg:mx-auto lg:w-1/2 bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                    class="lg:mx-auto lg:w-1/2 bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5">
             </div>
         </div>
     </div>
