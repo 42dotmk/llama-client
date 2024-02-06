@@ -1,20 +1,25 @@
-<div class="bg-slate-100">
-    <div class="h-svh w-screen mx-0 flex flex-col justify-between">
+<div class="bg-slate-50">
+    <div class="h-dvh mx-0 flex flex-col justify-between">
         <div class="overflow-scroll">
-            <div class="text-sm text-slate-500 flex flex-col items-center mb-10 mt-5">
+            <div class="text-sm text-slate-500 flex flex-col items-center pt-5 bg-slate-100 shadow-sm absolute w-full">
                 <div>llama2:7b</div>
                 <hr class="w-full mt-3" />
             </div>
-            <!-- CHAT CONTENT -->
-            <div class="flex flex-col gap-3 px-3 pb-10 lg:mx-auto lg:w-1/2">
+            <div class="flex flex-col gap-3 px-3 pb-10 pt-20 lg:mx-auto lg:w-1/2">
                 @for (message of messages; track message.createdAt) {
-                @if (message.sender === 'LLAMA') {
-                <div class="flex gap-1 items-start pb-5 pe-20 flex-col w-full rounded-md">
+                @if (message.sender === 'LLAMA' && !message.hasError) {
+                <div class="flex gap-1 items-start pb-5 flex-col overflow-x-scroll">
                     <div class="flex gap-3 items-center">
                         <img class="w-7 bg-white rounded-lg shadow-sm" src="http://status.42.mk/ollama.png" />
                         <div class="text-md text-slate-800 font-bold">Llama</div>
                     </div>
-                    <div class="ml-10 text-slate-800 prose" [innerHTML]="message.message"></div>
+                    <div class="ml-10 text-slate-800 prose w-full" [innerHTML]="message.message"></div>
+                </div>
+                }
+                @else if (message.hasError) {
+                <div class="bg-slate-100 border-l-4 border-red-400 px-4 py-2" role="alert">
+                    <p class="font-bold text-red-400">Oops</p>
+                    <p>Something went wrong.</p>
                 </div>
                 }
                 @else {
@@ -29,12 +34,13 @@
                 }
             </div>
         </div>
-        <div>
-            <hr class="mb-3" />
-            <div class="pb-5 lg:px-0 px-3">
+        <div class="w-full">
+            <div class="pb-5 lg:px-0 px-3 bg-slate-50">
+                <hr class="mb-3" />
                 <input type="text" [disabled]="isLoading" placeholder="Start talking with Llama"
                     (keyup.enter)="onEnter()" [(ngModel)]="input" [class.opacity-30]="isLoading"
                     class="lg:mx-auto lg:w-1/2 bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5">
             </div>
         </div>
     </div>
+</div>

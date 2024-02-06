@@ -4,6 +4,10 @@ import { RouterOutlet } from '@angular/router';
 import { LlamaService } from './services/llama.service';
 import { marked } from 'marked';
 
+type Message = {
+  sender: 'LLAMA' | 'YOU'; message?: string; createdAt: string; hasError?: boolean;
+}
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -12,13 +16,13 @@ import { marked } from 'marked';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  messages: { sender: 'LLAMA' | 'YOU'; message: string; createdAt: string }[] =
+  messages: Message[] =
     [];
   context: number[] = [];
   input = '';
   isLoading = false;
 
-  constructor(private readonly llamaService: LlamaService) {}
+  constructor(private readonly llamaService: LlamaService) { }
 
   onEnter(): void {
     this.isLoading = true;
@@ -32,16 +36,25 @@ export class AppComponent {
       .postNonStreamingPrompt(this.input, this.context)
       .subscribe({
         next: (data: any) => {
-          console.log(data);
           this.context = data.context;
           this.messages.push({
             sender: 'LLAMA',
             message: marked.parse(data.response) as string,
             createdAt: data['created_at'],
           });
+        },
+        error: (err) => {
+          this.messages.push({
+            sender: 'LLAMA',
+            hasError: true,
+            createdAt: Date(),
+          });
           this.isLoading = false;
         },
+        complete: () => {
+          this.isLoading = false;
+          this.input = '';
+        },
       });
-    this.input = '';
   }
 }
