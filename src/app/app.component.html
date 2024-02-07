@@ -1,11 +1,11 @@
-<div class="bg-slate-50 dark:bg-slate-800 absolute top-0 z-[-2] h-screen w-screen overflow-hidden">
-    <div class="absolute bottom-0 left-0 h-3/5 w-3/5 dark:bg-cyan-900 bg-cyan-400 rotate-12"></div>
+<div class="bg-slate-50 dark:bg-slate-800 absolute top-0 z-[-2] h-dvh w-screen overflow-hidden">
+    <div class="absolute bottom-0 left-0 h-3/5 w-3/5 dark:bg-violet-900 bg-violet-400 rotate-12"></div>
     <div class="absolute rop-0 right-0 h-3/5 w-3/5 bg-gradient-to-l from-sky-500 to-cyan-800 rotate-6"></div>
 </div>
 
 <div class="bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-300 bg-opacity-90 dark:bg-opacity-90 backdrop-blur-3xl dark:backdrop-blur-3xl">
     <div class="h-dvh mx-0 flex flex-col justify-between">
-        <div class="overflow-scroll">
+        <div class="overflow-y-auto">
             <div
                 class="backdrop-blur-md dark:backdrop-blur-md bg-opacity-50 dark:bg-opacity-50 text-slate-500 dark:text-slate-300 bg-slate-100 dark:bg-slate-900 text-sm flex flex-col items-center justify-center h-12 shadow-sm absolute w-full">
                 <div>llama2:7b</div>
@@ -13,12 +13,12 @@
             <div class="flex flex-col gap-3 px-3 pb-10 pt-20 lg:mx-auto lg:w-1/2">
                 @for (message of messages; track message.createdAt) {
                 @if (message.sender === 'LLAMA' && !message.hasError) {
-                <div class="flex gap-1 items-start pb-5 flex-col overflow-x-scroll">
+                <div class="flex gap-1 items-start pb-5 flex-col">
                     <div class="flex gap-3 items-center">
                         <img class="bg-white w-7 rounded-lg shadow-sm" src="assets/ollama.png" />
                         <div class="text-md font-bold">Llama</div>
                     </div>
-                    <div class="ml-10 w-full prose dark:prose-invert text-slate-800 dark:text-slate-300"
+                    <div class="ml-10 prose dark:prose-invert text-slate-800 dark:text-slate-300"
                         [innerHTML]="message.message"></div>
                 </div>
                 }
