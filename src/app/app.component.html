@@ -3,11 +3,12 @@
     <div class="absolute rop-0 right-0 h-3/5 w-3/5 bg-gradient-to-l from-sky-500 to-cyan-800 rotate-6"></div>
 </div>
 
-<div class="bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-300 bg-opacity-90 dark:bg-opacity-90 backdrop-blur-3xl dark:backdrop-blur-3xl">
+<div
+    class="bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-300 bg-opacity-90 dark:bg-opacity-90 backdrop-blur-3xl dark:backdrop-blur-3xl">
     <div class="h-dvh mx-0 flex flex-col justify-between">
         <div class="overflow-y-auto">
             <div
-                class="backdrop-blur-md dark:backdrop-blur-md bg-opacity-50 dark:bg-opacity-50 text-slate-500 dark:text-slate-300 bg-slate-100 dark:bg-slate-900 text-sm flex flex-col items-center justify-center h-12 shadow-sm absolute w-full">
+                class="backdrop-blur-md dark:backdrop-blur-md bg-opacity-30 dark:bg-opacity-30 text-slate-500 dark:text-slate-300 bg-slate-100 dark:bg-slate-900 text-sm flex flex-col items-center justify-center h-12 shadow-sm absolute w-full">
                 <div>llama2:7b</div>
             </div>
             <div class="flex flex-col gap-3 px-3 pb-10 pt-20 lg:mx-auto lg:w-1/2">
@@ -42,10 +43,16 @@
         </div>
         <div class="w-full">
             <div class="bg-slate-50 dark:bg-slate-800 pb-5 lg:px-0 px-3">
-                <div class="mb-3 bg-slate-300 dark:bg-slate-900 w-full h-[1px]"></div>
-                <input type="text" [disabled]="isLoading" placeholder="Start talking with Llama"
-                    (keyup.enter)="onEnter()" [(ngModel)]="input" [class.opacity-30]="isLoading"
-                    class="bg-transparent border-slate-300 dark:border-slate-500 shadow lg:mx-auto lg:w-1/2 border text-sm rounded-lg block w-full p-2.5">
+                <div class="mb-3 bg-slate-300 dark:bg-slate-900 w-full h-[1px] shadow-lg"></div>
+                <div class="lg:mx-auto lg:w-1/2 w-full flex items-center gap-2">
+                    <input type="text" [disabled]="isLoading" placeholder="Start talking with Llama"
+                        (keyup.enter)="onEnter()" [(ngModel)]="input" [class.opacity-30]="isLoading"
+                        class="bg-transparent border-slate-300 dark:border-slate-500 shadow border text-sm rounded-lg block w-full p-2.5">
+                    <button type="button" [disabled]="isLoading" (click)="onEnter()"
+                        class="bg-violet-100 hover:bg-violet-200 dark:bg-slate-900 dark:hover:bg-slate-950 border-slate-300 dark:border-slate-500 focus:ring-blue-300 hover:scale-105 disabled:opacity-50 border shadow focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-2.5 py-2 text-center inline-flex items-center me-2">
+                        <img class="h-6 dark:invert" src="assets/icons/send.svg" />
+                    </button>
+                </div>
             </div>
         </div>
     </div>
