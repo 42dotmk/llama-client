@@ -6,7 +6,7 @@
 <div
     class="bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-300 bg-opacity-90 dark:bg-opacity-90 backdrop-blur-3xl dark:backdrop-blur-3xl">
     <div class="h-dvh mx-0 flex flex-col justify-between">
-        <div class="overflow-y-auto">
+        <div class="overflow-y-auto" #scrollableArea [scrollTop]="scrollableArea.scrollHeight">
             <div
                 class="backdrop-blur-md dark:backdrop-blur-md bg-opacity-30 dark:bg-opacity-30 text-slate-500 dark:text-slate-300 bg-slate-100 dark:bg-slate-900 text-sm flex flex-col items-center justify-center h-12 shadow-sm absolute w-full">
                 <div>llama2:7b</div>
