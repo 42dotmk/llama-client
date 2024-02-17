@@ -45,31 +45,6 @@ export class AppComponent {
           
         },
       });
-
-    // this.llamaService
-    //   .postNonStreamingPrompt(this.input, this.context)
-    //   .subscribe({
-    //     next: (data: any) => {
-    //       this.context = data.context;
-    //       this.messages.push({
-    //         sender: 'LLAMA',
-    //         message: marked.parse(data.response) as string,
-    //         createdAt: data['created_at'],
-    //       });
-    //     },
-    //     error: (_) => {
-    //       this.messages.push({
-    //         sender: 'LLAMA',
-    //         hasError: true,
-    //         createdAt: Date(),
-    //       });
-    //       this.isLoading = false;
-    //     },
-    //     complete: () => {
-    //       this.isLoading = false;
-    //       this.input = '';
-    //     },
-    //   });
   }
 
   addInputAsMessage(): void {
