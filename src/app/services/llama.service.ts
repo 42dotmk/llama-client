@@ -12,7 +12,7 @@ export class LlamaService {
   private readonly ollama: Ollama;
 
   constructor(private readonly http: HttpClient) {
-    this.ollama = new Ollama();
+    this.ollama = new Ollama({ host: 'https://llama.42.mk' });
   }
 
   postNonStreamingPrompt(prompt: string, context?: number[]): Observable<any> {
